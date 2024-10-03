@@ -32,9 +32,9 @@ public class Client extends BaseModel {
     @Column(name = "firm_name", nullable = false, length = 50)
     private String firmName;
 
-    @OneToOne
+    @OneToOne(mappedBy = "client")
     private ClientPaymentPlan paymentPlan;
 
-    @OneToMany
+    @OneToMany(mappedBy = "sender")
     private List<Message> messages;
 }
