@@ -2,12 +2,11 @@ package com.joshuadias.chat.models;
 
 import com.joshuadias.chat.base.BaseModel;
 import com.joshuadias.chat.models.paymentPlan.ClientPaymentPlan;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -35,4 +34,7 @@ public class Client extends BaseModel {
 
     @OneToOne
     private ClientPaymentPlan paymentPlan;
+
+    @OneToMany
+    private List<Message> messages;
 }
