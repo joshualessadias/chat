@@ -1,5 +1,6 @@
 package com.joshuadias.chat.controllers;
 
+import com.joshuadias.chat.dtos.request.ClientRequestDTO;
 import com.joshuadias.chat.dtos.response.ClientResponseDTO;
 import com.joshuadias.chat.services.ClientService;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,7 @@ public class ClientController {
     private final ClientService clientService;
 
     @PostMapping
-    public ResponseEntity<ClientResponseDTO> create() {
-        return new ResponseEntity<>(clientService.create(), CREATED);
+    public ResponseEntity<ClientResponseDTO> create(ClientRequestDTO request) {
+        return new ResponseEntity<>(clientService.create(request), CREATED);
     }
 }
