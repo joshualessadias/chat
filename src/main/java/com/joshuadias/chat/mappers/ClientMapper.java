@@ -23,6 +23,7 @@ public class ClientMapper implements GenericMapper {
         entity.setCnpj(request.cnpj());
         entity.setFirmName(request.firmName());
         entity.setPaymentPlan(paymentPlanMapper.toEntity(request.paymentPlan()));
+        entity.getPaymentPlan().setClient(entity);
         return entity;
     }
 

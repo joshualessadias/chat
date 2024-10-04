@@ -3,9 +3,11 @@ package com.joshuadias.chat.controllers;
 import com.joshuadias.chat.dtos.request.ClientRequestDTO;
 import com.joshuadias.chat.dtos.response.ClientResponseDTO;
 import com.joshuadias.chat.services.ClientService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +21,11 @@ public class ClientController {
     private final ClientService clientService;
 
     @PostMapping
-    public ResponseEntity<ClientResponseDTO> create(ClientRequestDTO request) {
+    public ResponseEntity<ClientResponseDTO> create(
+            @RequestBody
+            @Valid
+            ClientRequestDTO request
+    ) {
         return new ResponseEntity<>(clientService.create(request), CREATED);
     }
 }

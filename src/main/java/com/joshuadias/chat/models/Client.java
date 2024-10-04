@@ -32,7 +32,7 @@ public class Client extends BaseModel {
     @Column(name = "firm_name", nullable = false, length = 50)
     private String firmName;
 
-    @OneToOne(mappedBy = "client")
+    @OneToOne(mappedBy = "client", cascade = CascadeType.PERSIST)
     private ClientPaymentPlan paymentPlan;
 
     @OneToMany(mappedBy = "sender")

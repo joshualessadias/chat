@@ -21,6 +21,8 @@ public class MessageMapper implements GenericMapper {
     }
 
     public List<MessageDTO> toResponse(List<Message> entityList) {
+        if (entityList == null || entityList.isEmpty()) return List.of();
+
         return entityList.stream().map(this::toResponse).toList();
     }
 }
