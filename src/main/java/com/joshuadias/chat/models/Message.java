@@ -14,7 +14,7 @@ public class Message extends BaseModel {
     @Column(name = "content", nullable = false, length = 500)
     private String content;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "sender_id")
     private Client sender;
 

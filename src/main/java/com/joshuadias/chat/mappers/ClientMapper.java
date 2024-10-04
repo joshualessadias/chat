@@ -4,17 +4,13 @@ import com.joshuadias.chat.base.GenericMapper;
 import com.joshuadias.chat.dtos.request.ClientRequestDTO;
 import com.joshuadias.chat.dtos.response.ClientResponseDTO;
 import com.joshuadias.chat.models.Client;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 
-@Component
-@RequiredArgsConstructor
 public class ClientMapper implements GenericMapper {
 
-    private final PaymentPlanMapper paymentPlanMapper;
-    private final MessageMapper messageMapper;
+    private ClientMapper() {
+    }
 
-    public Client toEntity(ClientRequestDTO request) {
+    public static Client toEntity(ClientRequestDTO request) {
         var entity = new Client();
         entity.setName(request.name());
         entity.setEmail(request.email());
@@ -22,12 +18,18 @@ public class ClientMapper implements GenericMapper {
         entity.setCpf(request.cpf());
         entity.setCnpj(request.cnpj());
         entity.setFirmName(request.firmName());
-        entity.setPaymentPlan(paymentPlanMapper.toEntity(request.paymentPlan()));
+        entity.setPaymentPlan(PaymentPlanMapper.toEntity(request.paymentPlan()));
         entity.getPaymentPlan().setClient(entity);
         return entity;
     }
 
-    public ClientResponseDTO toResponse(Client entity) {
+    public static Client toEntity(Long id) {
+        var entity = new Client();
+        entity.setId(id);
+        return entity;
+    }
+
+    public static ClientResponseDTO toResponse(Client entity) {
         return ClientResponseDTO.builder()
                 .id(entity.getId())
                 .name(entity.getName())
@@ -36,8 +38,8 @@ public class ClientMapper implements GenericMapper {
                 .cpf(entity.getCpf())
                 .cnpj(entity.getCnpj())
                 .firmName(entity.getFirmName())
-                .paymentPlan(paymentPlanMapper.toResponse(entity.getPaymentPlan()))
-                .messages(messageMapper.toResponse(entity.getMessages()))
+                .paymentPlan(PaymentPlanMapper.toResponse(entity.getPaymentPlan()))
+                .messages(MessageMapper.toResponse(entity.getMessages()))
                 .build();
     }
 }

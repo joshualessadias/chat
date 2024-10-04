@@ -13,7 +13,7 @@ public record ClientResponseDTO(
         Integer cpf,
         Integer cnpj,
         String firmName,
-        ClientPaymentPlanDTO paymentPlan,
-        List<MessageDTO> messages
+        ClientPaymentPlanResponseDTO paymentPlan,
+        List<MessageResponseDTO> messages
 ) {
 }

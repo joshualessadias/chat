@@ -1,4 +1,4 @@
-package com.joshuadias.chat.services;
+package com.joshuadias.chat.services.client;
 
 import com.joshuadias.chat.base.AbstractService;
 import com.joshuadias.chat.dtos.request.ClientRequestDTO;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class ClientPaymentPlanImpl extends AbstractService<ClientRepository, ClientMapper, Client, Long>
+public class ClientPaymentPlanImpl extends AbstractService<ClientRepository, Client, Long>
         implements ClientService {
 
     private void validateRequest(ClientRequestDTO request) {
@@ -30,8 +30,12 @@ public class ClientPaymentPlanImpl extends AbstractService<ClientRepository, Cli
     @Transactional
     public ClientResponseDTO create(ClientRequestDTO request) {
         validateRequest(request);
-        var entity = mapper.toEntity(request);
+        var entity = ClientMapper.toEntity(request);
         var createdEntity = save(entity);
-        return mapper.toResponse(createdEntity);
+        return ClientMapper.toResponse(createdEntity);
+    }
+
+    @Override
+    public void checkIfHasCredits(Long senderId) {
     }
 }

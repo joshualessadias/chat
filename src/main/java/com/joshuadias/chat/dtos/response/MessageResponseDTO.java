@@ -5,7 +5,7 @@ import lombok.Builder;
 import java.util.Date;
 
 @Builder
-public record MessageDTO(
+public record MessageResponseDTO(
         Long id,
         Date createdAt,
         String content,

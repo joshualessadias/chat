@@ -4,7 +4,7 @@ import com.joshuadias.chat.enums.PaymentPlanEnum;
 import lombok.Builder;
 
 @Builder
-public record ClientPaymentPlanDTO(
+public record ClientPaymentPlanResponseDTO(
         Long id,
         PaymentPlanEnum type
 ) {
