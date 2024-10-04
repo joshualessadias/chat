@@ -1,5 +1,6 @@
 package com.joshuadias.chat.dtos.request;
 
+import com.joshuadias.chat.enums.PaymentPlanEnum;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -30,6 +31,6 @@ public record ClientRequestDTO(
         String firmName,
 
         @NotNull(message = "Payment plan is required")
-        Long paymentPlanId
+        PaymentPlanEnum paymentPlan
 ) {
 }
