@@ -1,7 +1,7 @@
 package com.joshuadias.chat.mappers;
 
 import com.joshuadias.chat.base.GenericMapper;
-import com.joshuadias.chat.dtos.request.ClientRequestDTO;
+import com.joshuadias.chat.dtos.request.client.ClientRequestDTO;
 import com.joshuadias.chat.dtos.response.ClientResponseDTO;
 import com.joshuadias.chat.models.Client;
 
@@ -20,12 +20,6 @@ public class ClientMapper implements GenericMapper {
         entity.setFirmName(request.firmName());
         entity.setPaymentPlan(PaymentPlanMapper.toEntity(request.paymentPlan()));
         entity.getPaymentPlan().setClient(entity);
-        return entity;
-    }
-
-    public static Client toEntity(Long id) {
-        var entity = new Client();
-        entity.setId(id);
         return entity;
     }
 

@@ -1,7 +1,9 @@
-package com.joshuadias.chat.services.paymentPlan.postPaidPlan;
+package com.joshuadias.chat.services.paymentPlan;
 
 import com.joshuadias.chat.base.BaseService;
+import com.joshuadias.chat.dtos.request.client.ClientAddCreditsRequestDTO;
 import com.joshuadias.chat.exceptions.BadRequestException;
+import com.joshuadias.chat.models.paymentPlan.ClientPaymentPlan;
 import com.joshuadias.chat.models.paymentPlan.PostPaidPlan;
 import com.joshuadias.chat.repositories.PostPaidPlanRepository;
 import jakarta.transaction.Transactional;
@@ -11,8 +13,8 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 
 @Service
-public class PostPaidPlanServiceImpl extends BaseService<PostPaidPlanRepository, PostPaidPlan, Long>
-        implements PostPaidPlanService {
+public class PostPaidPlanService extends BaseService<PostPaidPlanRepository, PostPaidPlan, Long>
+        implements PaymentPlanService {
 
     private static final BigDecimal MESSAGE_VALUE = BigDecimal.valueOf(0.25);
 
@@ -23,9 +25,17 @@ public class PostPaidPlanServiceImpl extends BaseService<PostPaidPlanRepository,
 
     @Override
     @Transactional
-    public void handleMessageCredits(PostPaidPlan entity) {
+    public void handleMessageCredits(ClientPaymentPlan abstractEntity) {
+        var entity = (PostPaidPlan) abstractEntity;
         validateCredits(entity.getCreditSpent(), entity.getCreditLimit());
         entity.setCreditSpent(entity.getCreditSpent().add(MESSAGE_VALUE));
+        save(entity);
+    }
+
+    @Override
+    public void handleNewCredits(ClientPaymentPlan abstractEntity, ClientAddCreditsRequestDTO request) {
+        var entity = (PostPaidPlan) abstractEntity;
+        entity.setCreditLimit(request.credits());
         save(entity);
     }
 }

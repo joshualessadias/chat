@@ -1,7 +1,8 @@
 package com.joshuadias.chat.services.client;
 
 import com.joshuadias.chat.base.BaseService;
-import com.joshuadias.chat.dtos.request.ClientRequestDTO;
+import com.joshuadias.chat.dtos.request.client.ClientAddCreditsRequestDTO;
+import com.joshuadias.chat.dtos.request.client.ClientRequestDTO;
 import com.joshuadias.chat.dtos.response.ClientResponseDTO;
 import com.joshuadias.chat.exceptions.BadRequestException;
 import com.joshuadias.chat.mappers.ClientMapper;
@@ -48,5 +49,13 @@ public class ClientPaymentPlanImpl extends BaseService<ClientRepository, Client,
         var entity = findByIdOrThrow(senderId);
         paymentPlanService.handleMessageCredits(entity.getPaymentPlan());
         return entity;
+    }
+
+    @Override
+    public ClientResponseDTO addCredits(Long id, ClientAddCreditsRequestDTO request) {
+        var entity = findByIdOrThrow(id);
+        paymentPlanService.handleNewCredits(entity.getPaymentPlan(), request);
+        var updatedEntity = save(entity);
+        return ClientMapper.toResponse(updatedEntity);
     }
 }

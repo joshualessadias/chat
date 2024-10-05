@@ -1,7 +1,9 @@
 package com.joshuadias.chat.mappers;
 
 import com.joshuadias.chat.base.GenericMapper;
-import com.joshuadias.chat.dtos.response.ClientPaymentPlanResponseDTO;
+import com.joshuadias.chat.dtos.response.paymentPlan.PaymentPlanResponseDTO;
+import com.joshuadias.chat.dtos.response.paymentPlan.PostPaidPlanResponseDTO;
+import com.joshuadias.chat.dtos.response.paymentPlan.PrePaidPlanResponseDTO;
 import com.joshuadias.chat.enums.PaymentPlanEnum;
 import com.joshuadias.chat.exceptions.BadRequestException;
 import com.joshuadias.chat.models.paymentPlan.ClientPaymentPlan;
@@ -22,10 +24,21 @@ public class PaymentPlanMapper implements GenericMapper {
         throw new BadRequestException("Invalid payment plan: " + paymentPlanEnum);
     }
 
-    public static ClientPaymentPlanResponseDTO toResponse(ClientPaymentPlan entity) {
-        return ClientPaymentPlanResponseDTO.builder()
-                .id(entity.getId())
-                .type(entity instanceof PrePaidPlan ? PaymentPlanEnum.PRE_PAID : PaymentPlanEnum.POST_PAID)
-                .build();
+    public static PaymentPlanResponseDTO toResponse(ClientPaymentPlan abstractEntity) {
+        if (abstractEntity instanceof PrePaidPlan entity)
+            return PrePaidPlanResponseDTO.builder()
+                    .id(entity.getId())
+                    .type(PaymentPlanEnum.PRE_PAID)
+                    .credits(entity.getCredits())
+                    .build();
+        else if (abstractEntity instanceof PostPaidPlan entity)
+            return PostPaidPlanResponseDTO.builder()
+                    .id(entity.getId())
+                    .type(PaymentPlanEnum.POST_PAID)
+                    .creditLimit(entity.getCreditLimit())
+                    .creditSpent(entity.getCreditSpent())
+                    .build();
+
+        throw new BadRequestException("Invalid payment plan: " + abstractEntity.getClass().getSimpleName());
     }
 }
