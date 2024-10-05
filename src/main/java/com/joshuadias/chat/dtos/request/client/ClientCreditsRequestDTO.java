@@ -7,7 +7,7 @@ import lombok.Builder;
 import java.math.BigDecimal;
 
 @Builder
-public record ClientAddCreditsRequestDTO(
+public record ClientCreditsRequestDTO(
 
         @NotNull(message = "Credits is required")
         @Positive(message = "Credits must be greater than zero")

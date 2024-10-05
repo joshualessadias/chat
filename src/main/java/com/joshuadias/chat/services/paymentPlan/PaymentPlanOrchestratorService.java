@@ -1,6 +1,6 @@
 package com.joshuadias.chat.services.paymentPlan;
 
-import com.joshuadias.chat.dtos.request.client.ClientAddCreditsRequestDTO;
+import com.joshuadias.chat.dtos.request.client.ClientCreditsRequestDTO;
 import com.joshuadias.chat.models.paymentPlan.ClientPaymentPlan;
 import com.joshuadias.chat.models.paymentPlan.PostPaidPlan;
 import com.joshuadias.chat.models.paymentPlan.PrePaidPlan;
@@ -23,7 +23,7 @@ public class PaymentPlanOrchestratorService implements PaymentPlanService {
     }
 
     @Override
-    public void addCredits(ClientPaymentPlan abstractEntity, ClientAddCreditsRequestDTO request) {
+    public void addCredits(ClientPaymentPlan abstractEntity, ClientCreditsRequestDTO request) {
         if (abstractEntity instanceof PrePaidPlan)
             prePaidPlanService.addCredits(abstractEntity, request);
         else if (abstractEntity instanceof PostPaidPlan)
@@ -31,7 +31,7 @@ public class PaymentPlanOrchestratorService implements PaymentPlanService {
     }
 
     @Override
-    public void alterLimit(ClientPaymentPlan abstractEntity, ClientAddCreditsRequestDTO request) {
+    public void alterLimit(ClientPaymentPlan abstractEntity, ClientCreditsRequestDTO request) {
         if (abstractEntity instanceof PrePaidPlan)
             prePaidPlanService.alterLimit(abstractEntity, request);
         else if (abstractEntity instanceof PostPaidPlan)

@@ -1,7 +1,7 @@
 package com.joshuadias.chat.services.client;
 
 import com.joshuadias.chat.base.BaseService;
-import com.joshuadias.chat.dtos.request.client.ClientAddCreditsRequestDTO;
+import com.joshuadias.chat.dtos.request.client.ClientCreditsRequestDTO;
 import com.joshuadias.chat.dtos.request.client.ClientRequestDTO;
 import com.joshuadias.chat.dtos.response.ClientResponseDTO;
 import com.joshuadias.chat.exceptions.BadRequestException;
@@ -52,7 +52,7 @@ public class ClientPaymentPlanImpl extends BaseService<ClientRepository, Client,
     }
 
     @Override
-    public ClientResponseDTO addCredits(Long id, ClientAddCreditsRequestDTO request) {
+    public ClientResponseDTO addCredits(Long id, ClientCreditsRequestDTO request) {
         var entity = findByIdOrThrow(id);
         paymentPlanService.addCredits(entity.getPaymentPlan(), request);
         var updatedEntity = save(entity);
@@ -60,7 +60,7 @@ public class ClientPaymentPlanImpl extends BaseService<ClientRepository, Client,
     }
 
     @Override
-    public ClientResponseDTO alterLimit(Long id, ClientAddCreditsRequestDTO request) {
+    public ClientResponseDTO alterLimit(Long id, ClientCreditsRequestDTO request) {
         var entity = findByIdOrThrow(id);
         paymentPlanService.alterLimit(entity.getPaymentPlan(), request);
         var updatedEntity = save(entity);

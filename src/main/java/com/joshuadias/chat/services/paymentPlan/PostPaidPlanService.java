@@ -1,7 +1,7 @@
 package com.joshuadias.chat.services.paymentPlan;
 
 import com.joshuadias.chat.base.BaseService;
-import com.joshuadias.chat.dtos.request.client.ClientAddCreditsRequestDTO;
+import com.joshuadias.chat.dtos.request.client.ClientCreditsRequestDTO;
 import com.joshuadias.chat.exceptions.BadRequestException;
 import com.joshuadias.chat.models.paymentPlan.ClientPaymentPlan;
 import com.joshuadias.chat.models.paymentPlan.PostPaidPlan;
@@ -33,12 +33,12 @@ public class PostPaidPlanService extends BaseService<PostPaidPlanRepository, Pos
     }
 
     @Override
-    public void addCredits(ClientPaymentPlan abstractEntity, ClientAddCreditsRequestDTO request) {
+    public void addCredits(ClientPaymentPlan abstractEntity, ClientCreditsRequestDTO request) {
         throw new BadRequestException("Cannot add credits to post paid plan");
     }
 
     @Override
-    public void alterLimit(ClientPaymentPlan abstractEntity, ClientAddCreditsRequestDTO request) {
+    public void alterLimit(ClientPaymentPlan abstractEntity, ClientCreditsRequestDTO request) {
         var entity = (PostPaidPlan) abstractEntity;
         entity.setCreditLimit(request.credits());
         save(entity);
