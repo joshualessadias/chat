@@ -112,6 +112,31 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>cz.habarta.typescript-generator</groupId>
+				<artifactId>typescript-generator-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<?m2e ignore?>
+						<id>generate</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<phase>process-classes</phase>
+					</execution>
+				</executions>
+				<configuration>
+					<jsonLibrary>jackson2</jsonLibrary>
+					<outputKind>module</outputKind>
+					<classPatterns>
+						<pattern>com.joshuadias.chat.dtos.**DTO</pattern>
+						<pattern>org.springframework.data.domain.Page</pattern>
+					</classPatterns>
+					<excludeClasses>
+						<class>java.io.Serializable</class>
+					</excludeClasses>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
