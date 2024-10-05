@@ -59,4 +59,13 @@ public class ClientController {
     ) {
         return new ResponseEntity<>(service.findById(id), OK);
     }
+
+    @GetMapping("/actual")
+    public ResponseEntity<ClientResponseDTO> findActual(
+            // TODO: id should come from token
+            @RequestParam("id")
+            Long id
+    ) {
+        return new ResponseEntity<>(service.findById(id), OK);
+    }
 }
