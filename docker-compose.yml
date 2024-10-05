@@ -8,3 +8,17 @@ services:
       POSTGRES_DB: chat_db
     ports:
       - "5432:5432"
+
+  app:
+    image: chat-application
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/chat_db
+      SPRING_DATASOURCE_USERNAME: chat_user
+      SPRING_DATASOURCE_PASSWORD: chat_password
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
