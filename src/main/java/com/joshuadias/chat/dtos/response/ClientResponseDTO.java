@@ -1,5 +1,6 @@
 package com.joshuadias.chat.dtos.response;
 
+import com.joshuadias.chat.dtos.response.paymentPlan.PaymentPlanResponseDTO;
 import lombok.Builder;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public record ClientResponseDTO(
         Integer cpf,
         Integer cnpj,
         String firmName,
-        ClientPaymentPlanResponseDTO paymentPlan,
+        PaymentPlanResponseDTO paymentPlan,
         List<MessageResponseDTO> messages
 ) {
 }

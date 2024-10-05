@@ -1,4 +1,4 @@
-package com.joshuadias.chat.dtos.request;
+package com.joshuadias.chat.dtos.request.client;
 
 import com.joshuadias.chat.enums.PaymentPlanEnum;
 import jakarta.validation.constraints.NotBlank;
