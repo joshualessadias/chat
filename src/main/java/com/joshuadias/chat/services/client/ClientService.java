@@ -12,4 +12,6 @@ public interface ClientService {
     Client handleMessageCredits(Long senderId);
 
     ClientResponseDTO addCredits(Long id, ClientAddCreditsRequestDTO request);
+
+    ClientResponseDTO alterLimit(Long id, ClientAddCreditsRequestDTO request);
 }

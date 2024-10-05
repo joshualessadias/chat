@@ -33,9 +33,14 @@ public class PrePaidPlanService extends BaseService<PrePaidPlanRepository, PrePa
     }
 
     @Override
-    public void handleNewCredits(ClientPaymentPlan abstractEntity, ClientAddCreditsRequestDTO request) {
+    public void addCredits(ClientPaymentPlan abstractEntity, ClientAddCreditsRequestDTO request) {
         var entity = (PrePaidPlan) abstractEntity;
         entity.setCredits(entity.getCredits().add(request.credits()));
         save(entity);
+    }
+
+    @Override
+    public void alterLimit(ClientPaymentPlan abstractEntity, ClientAddCreditsRequestDTO request) {
+        throw new BadRequestException("Cannot alter limit to pre paid plan");
     }
 }

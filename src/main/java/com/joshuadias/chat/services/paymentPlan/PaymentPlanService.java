@@ -7,5 +7,7 @@ public interface PaymentPlanService {
 
     void handleMessageCredits(ClientPaymentPlan abstractEntity);
 
-    void handleNewCredits(ClientPaymentPlan abstractEntity, ClientAddCreditsRequestDTO request);
+    void addCredits(ClientPaymentPlan abstractEntity, ClientAddCreditsRequestDTO request);
+
+    void alterLimit(ClientPaymentPlan abstractEntity, ClientAddCreditsRequestDTO request);
 }

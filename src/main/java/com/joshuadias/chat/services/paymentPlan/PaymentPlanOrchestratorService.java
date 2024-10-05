@@ -23,10 +23,18 @@ public class PaymentPlanOrchestratorService implements PaymentPlanService {
     }
 
     @Override
-    public void handleNewCredits(ClientPaymentPlan abstractEntity, ClientAddCreditsRequestDTO request) {
+    public void addCredits(ClientPaymentPlan abstractEntity, ClientAddCreditsRequestDTO request) {
         if (abstractEntity instanceof PrePaidPlan)
-            prePaidPlanService.handleNewCredits(abstractEntity, request);
+            prePaidPlanService.addCredits(abstractEntity, request);
         else if (abstractEntity instanceof PostPaidPlan)
-            postPaidPlanService.handleNewCredits(abstractEntity, request);
+            postPaidPlanService.addCredits(abstractEntity, request);
+    }
+
+    @Override
+    public void alterLimit(ClientPaymentPlan abstractEntity, ClientAddCreditsRequestDTO request) {
+        if (abstractEntity instanceof PrePaidPlan)
+            prePaidPlanService.alterLimit(abstractEntity, request);
+        else if (abstractEntity instanceof PostPaidPlan)
+            postPaidPlanService.alterLimit(abstractEntity, request);
     }
 }

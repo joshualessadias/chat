@@ -54,7 +54,15 @@ public class ClientPaymentPlanImpl extends BaseService<ClientRepository, Client,
     @Override
     public ClientResponseDTO addCredits(Long id, ClientAddCreditsRequestDTO request) {
         var entity = findByIdOrThrow(id);
-        paymentPlanService.handleNewCredits(entity.getPaymentPlan(), request);
+        paymentPlanService.addCredits(entity.getPaymentPlan(), request);
+        var updatedEntity = save(entity);
+        return ClientMapper.toResponse(updatedEntity);
+    }
+
+    @Override
+    public ClientResponseDTO alterLimit(Long id, ClientAddCreditsRequestDTO request) {
+        var entity = findByIdOrThrow(id);
+        paymentPlanService.alterLimit(entity.getPaymentPlan(), request);
         var updatedEntity = save(entity);
         return ClientMapper.toResponse(updatedEntity);
     }

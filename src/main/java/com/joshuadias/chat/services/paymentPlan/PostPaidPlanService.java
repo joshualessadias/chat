@@ -33,7 +33,12 @@ public class PostPaidPlanService extends BaseService<PostPaidPlanRepository, Pos
     }
 
     @Override
-    public void handleNewCredits(ClientPaymentPlan abstractEntity, ClientAddCreditsRequestDTO request) {
+    public void addCredits(ClientPaymentPlan abstractEntity, ClientAddCreditsRequestDTO request) {
+        throw new BadRequestException("Cannot add credits to post paid plan");
+    }
+
+    @Override
+    public void alterLimit(ClientPaymentPlan abstractEntity, ClientAddCreditsRequestDTO request) {
         var entity = (PostPaidPlan) abstractEntity;
         entity.setCreditLimit(request.credits());
         save(entity);
