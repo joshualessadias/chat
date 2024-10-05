@@ -20,8 +20,8 @@ public class Client extends BaseModel {
     @Column(name = "email", nullable = false, unique = true, length = 50)
     private String email;
 
-    @Column(name = "phone_number", nullable = false)
-    private Integer phoneNumber;
+    @Column(name = "phone_number", nullable = false, length = 11, unique = true)
+    private String phoneNumber;
 
     @Column(name = "cpf", nullable = false, unique = true)
     private Integer cpf;

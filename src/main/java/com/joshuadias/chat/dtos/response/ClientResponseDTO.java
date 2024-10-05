@@ -10,7 +10,7 @@ public record ClientResponseDTO(
         Long id,
         String name,
         String email,
-        Integer phoneNumber,
+        String phoneNumber,
         Integer cpf,
         Integer cnpj,
         String firmName,

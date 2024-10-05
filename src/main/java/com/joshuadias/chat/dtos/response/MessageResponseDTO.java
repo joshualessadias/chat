@@ -9,7 +9,7 @@ public record MessageResponseDTO(
         Long id,
         Date createdAt,
         String content,
-        Integer receiverPhoneNumber,
+        String receiverPhoneNumber,
         Boolean isWhatsApp
 ) {
 }

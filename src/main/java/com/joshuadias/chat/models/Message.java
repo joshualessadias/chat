@@ -18,8 +18,8 @@ public class Message extends BaseModel {
     @JoinColumn(name = "sender_id")
     private Client sender;
 
-    @Column(name = "receiver_phone_number", nullable = false)
-    private Integer receiverPhoneNumber;
+    @Column(name = "receiver_phone_number", nullable = false, length = 11)
+    private String receiverPhoneNumber;
 
     @Column(name = "is_whats_app", nullable = false)
     private Boolean isWhatsApp = false;

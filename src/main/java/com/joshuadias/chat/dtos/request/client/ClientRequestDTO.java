@@ -17,8 +17,9 @@ public record ClientRequestDTO(
         @Size(max = 50, message = "Email must have a maximum of 50 characters")
         String email,
 
-        @NotNull(message = "Phone number is required")
-        Integer phoneNumber,
+        @NotBlank(message = "Phone number is required")
+        @Size(max = 11, message = "Phone number must have 11 characters")
+        String phoneNumber,
 
         @NotNull(message = "CPF is required")
         Integer cpf,
