@@ -22,5 +22,5 @@ public class Message extends BaseModel {
     private Integer receiverPhoneNumber;
 
     @Column(name = "is_whats_app", nullable = false)
-    private Boolean isWhatsApp;
+    private Boolean isWhatsApp = false;
 }

@@ -1,20 +1,23 @@
 package com.joshuadias.chat.services.client;
 
-import com.joshuadias.chat.base.AbstractService;
+import com.joshuadias.chat.base.BaseService;
 import com.joshuadias.chat.dtos.request.ClientRequestDTO;
 import com.joshuadias.chat.dtos.response.ClientResponseDTO;
 import com.joshuadias.chat.exceptions.BadRequestException;
 import com.joshuadias.chat.mappers.ClientMapper;
 import com.joshuadias.chat.models.Client;
 import com.joshuadias.chat.repositories.ClientRepository;
+import com.joshuadias.chat.services.paymentPlan.PaymentPlanOrchestratorService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class ClientPaymentPlanImpl extends AbstractService<ClientRepository, Client, Long>
+public class ClientPaymentPlanImpl extends BaseService<ClientRepository, Client, Long>
         implements ClientService {
+
+    private final PaymentPlanOrchestratorService paymentPlanService;
 
     private void validateRequest(ClientRequestDTO request) {
         if (Boolean.TRUE.equals(repository.existsByEmail(request.email())))
@@ -35,7 +38,15 @@ public class ClientPaymentPlanImpl extends AbstractService<ClientRepository, Cli
         return ClientMapper.toResponse(createdEntity);
     }
 
+    private Client findByIdOrThrow(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new BadRequestException("Client not found with id: " + id));
+    }
+
     @Override
-    public void checkIfHasCredits(Long senderId) {
+    public Client handleMessageCredits(Long senderId) {
+        var entity = findByIdOrThrow(senderId);
+        paymentPlanService.handleMessageCredits(entity.getPaymentPlan());
+        return entity;
     }
 }

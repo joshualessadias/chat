@@ -50,11 +50,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<ProblemDetail> resourceBadRequestException(
             BadRequestException ex
     ) {
-
         log.error("BadRequestException: ", ex);
         final ProblemDetail errorDetails =
-                ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, ex.getMessage());
-        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
+                ProblemDetail.forStatusAndDetail(ex.getStatus(), ex.getMessage());
+        return new ResponseEntity<>(errorDetails, ex.getStatus());
     }
 
     @ExceptionHandler(InternalAuthenticationServiceException.class)
