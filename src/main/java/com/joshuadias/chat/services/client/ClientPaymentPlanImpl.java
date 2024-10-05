@@ -2,11 +2,14 @@ package com.joshuadias.chat.services.client;
 
 import com.joshuadias.chat.base.BaseService;
 import com.joshuadias.chat.dtos.request.client.ClientCreditsRequestDTO;
+import com.joshuadias.chat.dtos.request.client.ClientPaymentPlanRequestDTO;
 import com.joshuadias.chat.dtos.request.client.ClientRequestDTO;
 import com.joshuadias.chat.dtos.response.ClientResponseDTO;
 import com.joshuadias.chat.exceptions.BadRequestException;
 import com.joshuadias.chat.mappers.ClientMapper;
+import com.joshuadias.chat.mappers.PaymentPlanMapper;
 import com.joshuadias.chat.models.Client;
+import com.joshuadias.chat.models.paymentPlan.ClientPaymentPlan;
 import com.joshuadias.chat.repositories.ClientRepository;
 import com.joshuadias.chat.services.paymentPlan.PaymentPlanOrchestratorService;
 import jakarta.transaction.Transactional;
@@ -81,5 +84,20 @@ public class ClientPaymentPlanImpl extends BaseService<ClientRepository, Client,
     public List<ClientResponseDTO> findAll() {
         var entityList = repository.findAll();
         return ClientMapper.toResponse(entityList);
+    }
+
+    private void validateNewPaymentPlan(Client entity, ClientPaymentPlan newPaymentPlan) {
+        if (entity.getPaymentPlan().getClass().equals(newPaymentPlan.getClass()))
+            throw new BadRequestException("Não é possível alterar o plano de pagamento para o mesmo plano atual");
+    }
+
+    @Override
+    public ClientResponseDTO alterPaymentPlan(Long id, ClientPaymentPlanRequestDTO request) {
+        var entity = findByIdOrThrow(id);
+        var newPaymentPlan = PaymentPlanMapper.toEntity(request.paymentPlan());
+        validateNewPaymentPlan(entity, newPaymentPlan);
+        entity.setPaymentPlan(newPaymentPlan);
+        var updatedEntity = save(entity);
+        return ClientMapper.toResponse(updatedEntity);
     }
 }

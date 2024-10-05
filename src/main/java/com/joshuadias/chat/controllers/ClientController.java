@@ -1,6 +1,7 @@
 package com.joshuadias.chat.controllers;
 
 import com.joshuadias.chat.dtos.request.client.ClientCreditsRequestDTO;
+import com.joshuadias.chat.dtos.request.client.ClientPaymentPlanRequestDTO;
 import com.joshuadias.chat.dtos.request.client.ClientRequestDTO;
 import com.joshuadias.chat.dtos.response.ClientResponseDTO;
 import com.joshuadias.chat.services.client.ClientService;
@@ -74,5 +75,17 @@ public class ClientController {
     @GetMapping("/all")
     public ResponseEntity<List<ClientResponseDTO>> findAll() {
         return new ResponseEntity<>(service.findAll(), OK);
+    }
+
+    // TODO: only backoffice can access this endpoint
+    @PutMapping("/{id}/alter-payment-plan")
+    public ResponseEntity<ClientResponseDTO> alterPaymentPlan(
+            @PathVariable
+            Long id,
+            @RequestBody
+            @Valid
+            ClientPaymentPlanRequestDTO request
+    ) {
+        return new ResponseEntity<>(service.alterPaymentPlan(id, request), ACCEPTED);
     }
 }
