@@ -13,6 +13,8 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ClientPaymentPlanImpl extends BaseService<ClientRepository, Client, Long>
@@ -71,5 +73,11 @@ public class ClientPaymentPlanImpl extends BaseService<ClientRepository, Client,
     public ClientResponseDTO findById(Long id) {
         var entity = findByIdOrThrow(id);
         return ClientMapper.toResponse(entity);
+    }
+
+    @Override
+    public List<ClientResponseDTO> findAll() {
+        var entityList = repository.findAll();
+        return ClientMapper.toResponse(entityList);
     }
 }

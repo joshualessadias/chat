@@ -5,6 +5,8 @@ import com.joshuadias.chat.dtos.request.client.ClientRequestDTO;
 import com.joshuadias.chat.dtos.response.ClientResponseDTO;
 import com.joshuadias.chat.models.Client;
 
+import java.util.List;
+
 public class ClientMapper implements GenericMapper {
 
     private ClientMapper() {
@@ -35,5 +37,11 @@ public class ClientMapper implements GenericMapper {
                 .paymentPlan(PaymentPlanMapper.toResponse(entity.getPaymentPlan()))
                 .messages(MessageMapper.toResponse(entity.getMessages()))
                 .build();
+    }
+
+    public static List<ClientResponseDTO> toResponse(List<Client> entityList) {
+        if (entityList == null || entityList.isEmpty()) return List.of();
+
+        return entityList.stream().map(ClientMapper::toResponse).toList();
     }
 }

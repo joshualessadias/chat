@@ -5,6 +5,8 @@ import com.joshuadias.chat.dtos.request.client.ClientRequestDTO;
 import com.joshuadias.chat.dtos.response.ClientResponseDTO;
 import com.joshuadias.chat.models.Client;
 
+import java.util.List;
+
 public interface ClientService {
 
     ClientResponseDTO create(ClientRequestDTO request);
@@ -16,4 +18,6 @@ public interface ClientService {
     ClientResponseDTO alterLimit(Long id, ClientCreditsRequestDTO request);
 
     ClientResponseDTO findById(Long id);
+
+    List<ClientResponseDTO> findAll();
 }

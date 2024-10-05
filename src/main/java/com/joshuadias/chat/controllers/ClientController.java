@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static org.springframework.http.HttpStatus.*;
 
 @RestController
@@ -67,5 +69,10 @@ public class ClientController {
             Long id
     ) {
         return new ResponseEntity<>(service.findById(id), OK);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<ClientResponseDTO>> findAll() {
+        return new ResponseEntity<>(service.findAll(), OK);
     }
 }
