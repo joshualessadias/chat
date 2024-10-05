@@ -14,4 +14,6 @@ public interface ClientService {
     ClientResponseDTO addCredits(Long id, ClientAddCreditsRequestDTO request);
 
     ClientResponseDTO alterLimit(Long id, ClientAddCreditsRequestDTO request);
+
+    ClientResponseDTO findById(Long id);
 }

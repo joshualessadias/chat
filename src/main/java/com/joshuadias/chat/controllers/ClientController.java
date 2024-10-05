@@ -9,8 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import static org.springframework.http.HttpStatus.ACCEPTED;
-import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.*;
 
 @RestController
 @RequestMapping("/api/v1/client")
@@ -64,5 +63,14 @@ public class ClientController {
             ClientAddCreditsRequestDTO request
     ) {
         return new ResponseEntity<>(service.alterLimit(id, request), ACCEPTED);
+    }
+
+    // TODO: only backoffice can access this endpoint
+    @GetMapping("/{id}")
+    public ResponseEntity<ClientResponseDTO> findById(
+            @PathVariable
+            Long id
+    ) {
+        return new ResponseEntity<>(service.findById(id), OK);
     }
 }

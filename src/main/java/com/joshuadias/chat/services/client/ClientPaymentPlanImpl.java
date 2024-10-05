@@ -66,4 +66,10 @@ public class ClientPaymentPlanImpl extends BaseService<ClientRepository, Client,
         var updatedEntity = save(entity);
         return ClientMapper.toResponse(updatedEntity);
     }
+
+    @Override
+    public ClientResponseDTO findById(Long id) {
+        var entity = findByIdOrThrow(id);
+        return ClientMapper.toResponse(entity);
+    }
 }
