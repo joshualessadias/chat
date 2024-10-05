@@ -18,14 +18,16 @@ public record ClientRequestDTO(
         String email,
 
         @NotBlank(message = "Phone number is required")
-        @Size(max = 11, message = "Phone number must have 11 characters")
+        @Size(min = 11, max = 11, message = "Phone number must have 11 characters")
         String phoneNumber,
 
-        @NotNull(message = "CPF is required")
-        Integer cpf,
+        @NotBlank(message = "CPF is required")
+        @Size(min = 11, max = 11, message = "CPF must have 11 characters")
+        String cpf,
 
-        @NotNull(message = "CNPJ is required")
-        Integer cnpj,
+        @NotBlank(message = "CNPJ is required")
+        @Size(min = 14, max = 14, message = "CNPJ must have 14 characters")
+        String cnpj,
 
         @NotBlank(message = "Firm name is required")
         @Size(max = 50, message = "Firm name must have a maximum of 50 characters")

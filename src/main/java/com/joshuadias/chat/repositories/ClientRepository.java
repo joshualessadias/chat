@@ -9,7 +9,9 @@ public interface ClientRepository extends GenericRepository<Client, Long> {
 
     Boolean existsByEmail(String email);
 
-    Boolean existsByCpf(Integer cpf);
+    Boolean existsByPhoneNumber(String phoneNumber);
 
-    Boolean existsByCnpj(Integer cnpj);
+    Boolean existsByCpf(String cpf);
+
+    Boolean existsByCnpj(String cnpj);
 }

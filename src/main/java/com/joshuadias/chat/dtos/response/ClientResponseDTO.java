@@ -11,8 +11,8 @@ public record ClientResponseDTO(
         String name,
         String email,
         String phoneNumber,
-        Integer cpf,
-        Integer cnpj,
+        String cpf,
+        String cnpj,
         String firmName,
         PaymentPlanResponseDTO paymentPlan,
         List<MessageResponseDTO> messages

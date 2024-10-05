@@ -29,6 +29,8 @@ public class ClientPaymentPlanImpl extends BaseService<ClientRepository, Client,
             throw new BadRequestException("Client already exists with CPF: " + request.cpf());
         if (Boolean.TRUE.equals(repository.existsByCnpj(request.cnpj())))
             throw new BadRequestException("Client already exists with CNPJ: " + request.cnpj());
+        if (Boolean.TRUE.equals(repository.existsByPhoneNumber(request.phoneNumber())))
+            throw new BadRequestException("Client already exists with phone number: " + request.phoneNumber());
     }
 
 

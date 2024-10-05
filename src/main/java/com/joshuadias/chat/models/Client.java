@@ -23,11 +23,11 @@ public class Client extends BaseModel {
     @Column(name = "phone_number", nullable = false, length = 11, unique = true)
     private String phoneNumber;
 
-    @Column(name = "cpf", nullable = false, unique = true)
-    private Integer cpf;
+    @Column(name = "cpf", nullable = false, unique = true, length = 11)
+    private String cpf;
 
-    @Column(name = "cnpj", nullable = false, unique = true)
-    private Integer cnpj;
+    @Column(name = "cnpj", nullable = false, unique = true, length = 14)
+    private String cnpj;
 
     @Column(name = "firm_name", nullable = false, length = 50)
     private String firmName;
