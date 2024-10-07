@@ -20,7 +20,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ClientPaymentPlanImpl extends BaseService<ClientRepository, Client, Long>
+public class ClientServiceImpl extends BaseService<ClientRepository, Client, Long>
         implements ClientService {
 
     private final PaymentPlanOrchestratorService paymentPlanService;
