@@ -7,3 +7,5 @@
    * `docker build -t chat-application .`
 3. Rode o seguinte comando para iniciar o ambiente no docker
    * `docker-compose up --build`
+
+#### É possível importar a coleção do postman para testar a API, que está na raiz do projeto.

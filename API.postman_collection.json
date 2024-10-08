@@ -1,0 +1,385 @@
+{
+	"info": {
+		"_postman_id": "4846bc91-a222-4df5-89d7-17406027510d",
+		"name": "API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20045493"
+	},
+	"item": [
+		{
+			"name": "client",
+			"item": [
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"name_5f854100821c\",\r\n    \"email\": \"email_2968720de5d3\",\r\n    \"phoneNumber\": 0,\r\n    \"cpf\": 8,\r\n    \"cnpj\": 8,\r\n    \"firmName\": \"firmName_7d30e90884b0\",\r\n    \"paymentPlan\": \"POST_PAID\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{base}}/{{entity}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{base}}",
+								"{{entity}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add credits",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"credits\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{base}}/{{entity}}/7/add-credits",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{base}}",
+								"{{entity}}",
+								"7",
+								"add-credits"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "alter limit",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"credits\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{base}}/{{entity}}/6/alter-limit",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{base}}",
+								"{{entity}}",
+								"6",
+								"alter-limit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find by id",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{base}}/{{entity}}/10",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{base}}",
+								"{{entity}}",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actual",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{base}}/{{entity}}/actual?id=6",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{base}}",
+								"{{entity}}",
+								"actual"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "alter payment plan",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"paymentPlan\": \"POST_PAID\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{base}}/{{entity}}/6/alter-payment-plan",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{base}}",
+								"{{entity}}",
+								"6",
+								"alter-payment-plan"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							"pm.globals.set(\"entity\", \"client\");"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "message",
+			"item": [
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"content_442c6dab6b21\",\r\n    \"receiverPhoneNumber\": 998770625,\r\n    \"isWhatsApp\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{base}}/{{entity}}?senderId=7",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{base}}",
+								"{{entity}}"
+							],
+							"query": [
+								{
+									"key": "senderId",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							"pm.globals.set(\"entity\", \"message\");"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

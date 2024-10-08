@@ -19,7 +19,6 @@ public class MessageController {
 
     @PostMapping
     public ResponseEntity<MessageResponseDTO> send(
-            // TODO: senderId should come from token
             @RequestParam("senderId")
             Long senderId,
             @RequestBody

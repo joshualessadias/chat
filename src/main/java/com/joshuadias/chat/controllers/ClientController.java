@@ -30,7 +30,6 @@ public class ClientController {
         return new ResponseEntity<>(service.create(request), CREATED);
     }
 
-    // TODO: only backoffice can access this endpoint
     @PutMapping("/{id}/add-credits")
     public ResponseEntity<ClientResponseDTO> addCredits(
             @PathVariable
@@ -42,7 +41,6 @@ public class ClientController {
         return new ResponseEntity<>(service.addCredits(id, request), ACCEPTED);
     }
 
-    // TODO: only backoffice can access this endpoint
     @PutMapping("/{id}/alter-limit")
     public ResponseEntity<ClientResponseDTO> alterLimit(
             @PathVariable
@@ -54,7 +52,6 @@ public class ClientController {
         return new ResponseEntity<>(service.alterLimit(id, request), ACCEPTED);
     }
 
-    // TODO: only backoffice can access this endpoint
     @GetMapping("/{id}")
     public ResponseEntity<ClientResponseDTO> findById(
             @PathVariable
@@ -65,7 +62,6 @@ public class ClientController {
 
     @GetMapping("/actual")
     public ResponseEntity<ClientResponseDTO> findActual(
-            // TODO: id should come from token
             @RequestParam("id")
             Long id
     ) {
@@ -77,7 +73,6 @@ public class ClientController {
         return new ResponseEntity<>(service.findAll(), OK);
     }
 
-    // TODO: only backoffice can access this endpoint
     @PutMapping("/{id}/alter-payment-plan")
     public ResponseEntity<ClientResponseDTO> alterPaymentPlan(
             @PathVariable
