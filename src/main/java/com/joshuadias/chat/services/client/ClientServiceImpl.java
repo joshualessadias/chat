@@ -1,6 +1,5 @@
 package com.joshuadias.chat.services.client;
 
-import com.joshuadias.chat.base.BaseService;
 import com.joshuadias.chat.dtos.request.client.ClientCreditsRequestDTO;
 import com.joshuadias.chat.dtos.request.client.ClientPaymentPlanRequestDTO;
 import com.joshuadias.chat.dtos.request.client.ClientRequestDTO;
@@ -20,9 +19,9 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ClientServiceImpl extends BaseService<ClientRepository, Client, Long>
-        implements ClientService {
+public class ClientServiceImpl implements ClientService {
 
+    private final ClientRepository repository;
     private final PaymentPlanOrchestratorService paymentPlanService;
 
     private void validateRequest(ClientRequestDTO request) {
@@ -42,7 +41,7 @@ public class ClientServiceImpl extends BaseService<ClientRepository, Client, Lon
     public ClientResponseDTO create(ClientRequestDTO request) {
         validateRequest(request);
         var entity = ClientMapper.toEntity(request);
-        var createdEntity = save(entity);
+        var createdEntity = repository.save(entity);
         return ClientMapper.toResponse(createdEntity);
     }
 
@@ -62,7 +61,7 @@ public class ClientServiceImpl extends BaseService<ClientRepository, Client, Lon
     public ClientResponseDTO addCredits(Long id, ClientCreditsRequestDTO request) {
         var entity = findByIdOrThrow(id);
         paymentPlanService.addCredits(entity.getPaymentPlan(), request);
-        var updatedEntity = save(entity);
+        var updatedEntity = repository.save(entity);
         return ClientMapper.toResponse(updatedEntity);
     }
 
@@ -70,7 +69,7 @@ public class ClientServiceImpl extends BaseService<ClientRepository, Client, Lon
     public ClientResponseDTO alterLimit(Long id, ClientCreditsRequestDTO request) {
         var entity = findByIdOrThrow(id);
         paymentPlanService.alterLimit(entity.getPaymentPlan(), request);
-        var updatedEntity = save(entity);
+        var updatedEntity = repository.save(entity);
         return ClientMapper.toResponse(updatedEntity);
     }
 
@@ -97,7 +96,7 @@ public class ClientServiceImpl extends BaseService<ClientRepository, Client, Lon
         var newPaymentPlan = PaymentPlanMapper.toEntity(request.paymentPlan());
         validateNewPaymentPlan(entity, newPaymentPlan);
         entity.setPaymentPlan(newPaymentPlan);
-        var updatedEntity = save(entity);
+        var updatedEntity = repository.save(entity);
         return ClientMapper.toResponse(updatedEntity);
     }
 }
